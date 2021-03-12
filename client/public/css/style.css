@@ -1,0 +1,42 @@
+body {
+  background: url('../img/background.jpg');
+  background-size: cover;
+}
+
+#content {
+  backdrop-filter: blur(10px);
+}
+
+.content {
+  backdrop-filter: blur(10px);
+}
+
+.jumbotron {
+  background: none;
+}
+
+.btn-todo {
+  margin: 5px;
+  width: 94%;
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 768px) {
+  .flex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .btn-groups{
+    width: 100%;
+  }
+
+  .btn-todo {
+    width: 95%;
+  }
+}

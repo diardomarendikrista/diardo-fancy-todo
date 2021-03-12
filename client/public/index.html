@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="img/logo.png" type="image/gif" sizes="16x16">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id" content="137061136173-dim5949i3nrmld5jn5lktc42o05bv03d.apps.googleusercontent.com">
+  <!-- Social -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- CDN CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Fancy ToDo</title>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info" id="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="">
+        <img src="img/logo.png" width="45" height="45" alt="Fancy Todo">
+        Fancy ToDo
+      </a>
+   
+      <span class="navbar-text text-white" id="user-info">
+        Hello, <span id="user-name"></span>
+        <button class="btn btn-outline-light" id="btn-logout">Log out</button>
+      </span>
+    </div>
+  </nav>
+  <!-- END Navbar -->
+
+  <!-- Login & Register -->
+  <div id="login-register-page" class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div id="register-page">
+            <h2>Register</h2>
+            <form id="form-register">
+              <div class="form-group">
+                <input class="form-control" type="text" name="email" id="email-register" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="password" name="password" id="password-register" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="password" name="repeat-password" id="repeat-password-register" placeholder="Repeat Password">
+                <p><small class="text-muted">we will keep your data safe with our encryption</small></p>
+              </div>
+              <div class="form-group">
+                <p class="login-warning text-danger"></p>
+                <button class="btn btn-primary" id="btn-register" type="submit">Register</button>
+                <button class="btn btn-secondary" id="to-login">I Have an Account</button>
+              </div>
+            </form>
+          </div>
+      
+          <div id="login-page">
+            <h2>Login</h2>
+            <form id="form-login">
+              <div class="form-group">
+                <input class="form-control" type="text" name="email" id="email-login" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="password" name="password" id="password-login" placeholder="Password">
+                <p class="login-warning text-danger"></p>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" id="btn-login" type="submit">Login</button>
+                <button class="btn btn-secondary" id="to-register">Don't Have Account</button>
+              </div>
+            </form>
+          </div>
+          <div id="g-signin" style="margin-top: 25px;">
+            <h5>Or Just Login With Google</h5>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+          </div>
+        </div>
+        <!-- Information -->
+        <div class="col">
+          <div>
+            <hr>
+            <h1 class="text-primary">Welcome to Fancy To-Do</h1>
+            <p>
+              Register with easy-peasy way to get into our services.
+              Our apps already encrypted with safe way and will not leak to another party.
+            </p>
+            <p>
+              Or if you don't want to waste your precious 5 second to register, you can just click
+              the Google Login button.
+            </p>
+            <p>
+              You can manage your To-Do, set it as done or not done, also you will get daily motivation
+              to increase your enthusiasm and inspiration in running todo!
+            </p>
+            <p class="text-primary">
+              Hope you enjoy your day with Fancy To-Do!!
+            </p>
+            <p class="blockquote-footer">Noob Developer</p>
+            <hr>
+          </div>
+        </div>
+        <!-- END Information -->
+      </div>
+    </div>
+  </div>
+  <!-- END Login & Register-->
+
+  <!-- Main Page -->
+  <div class="container jumbotron" id="content">
+    <div class="row flex">
+      <div class="col flex-reverse">
+        <!-- Form Add -->
+        <div id="form-add-todo">
+          <h2>Add New Todo</h2>
+          <p id="add-todo-info"></p>
+          <form id="add-todo">
+            <div class="form-group">
+              <input class="form-control" type="text" name="title" id="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="date" name="due_date" id="due_date" placeholder="Date">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" type="text" name="description" id="description" placeholder="Description" rows="3"></textarea>
+              <p><small class="">* Date must be greater than today</small></p>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" id="btn-add-todo" type="submit">Add New Todo</button>
+            </div>
+          </form>
+        </div>
+        <!-- End Form Add -->
+        <!-- Form Edit -->
+        <div id="form-edit-todo">
+          <h2>Edit This Todo</h2>
+          <form id="edit-todo">
+            <p id="edit-todo-info"></p>
+            <div class="form-group">
+              <input class="form-control" type="text" name="title-edit" id="title-edit" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="date" name="due_date-edit" id="due_date-edit">
+            </div>
+            <div class="form-group">
+              <select class="form-control" name="status-edit" id="status-edit">
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" type="text" name="description-edit" id="description-edit" placeholder="Description" rows="3"></textarea>
+              <p><small class="">* Date must be greater than today</small></p>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" id="btn-edit-todo" type="submit">Edit This Todo</button>
+              <button class="btn btn-secondary" id="btn-cancel-edit-todo" type="submit">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <!-- End Form Edit -->
+        <!-- card quotes -->
+        <hr/>
+        <div id="quotes">
+          <!-- quotes here -->
+        </div>
+        <hr/>
+        <!-- END card quotes -->
+      </div>
+      
+      <!-- Todo List -->
+      <div class="col">
+        <h2>Your Todo :</h2>
+        <p id="your-todo-info"></p>
+        <div id="todos">
+          <!-- Todo List Will be Generated Here -->
+        </div>
+      </div>
+      <!-- End Todo List -->
+    </div>
+  </div>
+  <!-- END Main Page -->
+
+  <!-- CDN JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- CDN Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  <!-- Script -->
+  <script src="js/script.js"></script>
+</body>
+</html>
